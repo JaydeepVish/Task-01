@@ -1,0 +1,44 @@
+<%- include('../layout/main.ejs') %>
+
+<h1>Products</h1>
+
+<a href="/products/create">Create Product</a>
+<table>
+    <tr>
+      <th>Product Id</th>
+      <th>Product Name</th>
+      <th>Categories Id</th>
+      <th>Categories Name</th>
+      <th>Actions</th>
+    </tr>
+    <%  if(products.length > 0) { products.forEach(product => { %>
+      <tr>
+        <td><%= product.id %></td>
+        <td><%= product.productname %></td>
+        <td><% if(product.id) { %> <%= product.id %> <% } else { %> No Category <% } %></td>
+        <td><% if(product.name) { %> <%= product.name %> <% } else { %> No Category <% } %></td>
+        <td><a href="/products/edit/<%= product.id %>">Edit</a></br>
+            <a href="/products/delete/<%= product.id %>">Delete</a></td>
+      </tr>
+    <% }) }else { %>
+        <td>No Data</td>
+    <% } %>
+</table>
+<!-- Pagination -->
+<div class="pagination">
+    <% if (currentPage > 1) { %>
+      <a href="/products?page=<%= currentPage - 1 %>&pageSize=<%= pageSize %>">Previous</a>
+    <% } %>
+
+    <% for (let i = 1; i <= totalPages; i++) { %>
+      <% if (i === currentPage) { %>
+        <a class="active" href="/products?page=<%= i %>&pageSize=<%= pageSize %>"><%= i %></a>
+      <% } else { %>
+        <a href="/products?page=<%= i %>&pageSize=<%= pageSize %>"><%= i %></a>
+      <% } %>
+    <% } %>
+
+    <% if (currentPage < totalPages) { %>
+      <a href="/products?page=<%= currentPage + 1 %>&pageSize=<%= pageSize %>">Next</a>
+    <% } %>
+</div>

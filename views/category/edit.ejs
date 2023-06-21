@@ -1,0 +1,6 @@
+<%- include('../layout/main.ejs') %>
+<!-- Create category form -->
+<form action="/categories/edit/<%= cat.id %>" method="post">
+    <input type="text" name="name" placeholder="Category name" value="<%= cat.name %>" required>
+    <button type="submit">Update</button>
+</form>

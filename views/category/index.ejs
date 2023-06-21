@@ -1,0 +1,20 @@
+<%- include('../layout/main.ejs') %>
+
+<h1>Categories</h1>
+
+<a href="/categories/create">Create Category</a>
+<table>
+    <tr>
+      <th>Categories Name</th>
+      <th>Actions</th>
+    </tr>
+    <%  if(cat.length > 0) { cat.forEach(category => { %>
+      <tr>
+        <td><%= category.name %></td>
+        <td><a href="/categories/edit/<%= category.id %>">Edit</a></br>
+            <a href="/categories/delete/<%= category.id %>">Delete</a></td>
+      </tr>
+    <% }) }else { %>
+        <td>No Data</td>
+    <% } %>
+</table>

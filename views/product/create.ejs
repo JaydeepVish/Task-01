@@ -1,0 +1,14 @@
+<%- include('../layout/main.ejs') %>
+<!-- Create category form -->
+<form action="/products/create" method="post">
+    <input type="text" name="productName" placeholder="Product name" required>
+    <select name="category">
+        <%  if(cat.length > 0) { cat.forEach(category => { %>
+            <option value="<%= category.id %>"><%= category.name %></option>
+        <% }) }else { %>
+            <option>No Category Avaiable</option>
+        <% } %>
+        
+    </select>
+    <button type="submit">Create</button>
+</form>
